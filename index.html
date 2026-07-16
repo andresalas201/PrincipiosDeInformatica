@@ -7,12 +7,25 @@
 </head>
 <body>
     <h1 class = main-title>Principios de Informática</h1>
-    <div class="main-content">
-        <h1>Tema 1: Fundamentos de la programación</h1>
-        <div class="markdown">
-            <md-block src="Markdowns/Ch1.md"></md-block>
+
+    
+
+    <div class="page-layout">
+        <button id="sidebar-toggle" class="sidebar-toggle">☰</button>
+        <nav class="sidebar" id="sidebar">
+            <h4>Contenido</h4>
+            <ul id="sidebar-list">
+            </ul>
+        </nav>
+
+        <div class="main-content">
+            <div class="markdown">
+                <md-block src="Markdowns/Ch1.md"></md-block>
+            </div>
         </div>
     </div>
+
+    
    
     <footer class="footer">
         <div class="footer-content">
@@ -35,3 +48,69 @@
     </footer>
 </body>
 </html>
+
+<script>
+    function buildSidebar() {
+        const headings = document.querySelectorAll('.markdown h1, .markdown h2');
+        const list = document.getElementById('sidebar-list');
+        list.innerHTML = '';
+
+        let currentH1Container = null;
+        let currentDetails = null;
+
+        headings.forEach(h => {
+            const level = h.tagName.toLowerCase();
+
+            if (level === 'h1') {
+                // Top-level: always visible, collapsible if it has children
+                const details = document.createElement('details');
+                details.classList.add('sidebar-section');
+
+                const summary = document.createElement('summary');
+                const topLink = document.createElement('a');
+                topLink.href = `#${h.id}`;
+                topLink.textContent = h.textContent;
+                summary.appendChild(topLink);
+                details.appendChild(summary);
+
+                const childList = document.createElement('ul');
+                childList.classList.add('sidebar-children');
+                details.appendChild(childList);
+
+                list.appendChild(details);
+
+                currentDetails = details;
+                currentH1Container = childList;
+            } else {
+                if (!currentH1Container) return;
+
+                const li = document.createElement('li');
+                const a = document.createElement('a');
+                a.href = `#${h.id}`;
+                a.textContent = h.textContent;
+                a.classList.add(`level-${level}`);
+                li.appendChild(a);
+                currentH1Container.appendChild(li);
+            }
+        });
+
+        document.querySelectorAll('.sidebar-section').forEach(details => {
+            const childList = details.querySelector('.sidebar-children');
+            if (childList.children.length === 0) {
+                details.classList.add('no-children');
+            }
+        });
+    }
+    document.querySelectorAll('md-block').forEach(block => {
+    const observer = new MutationObserver(() => {
+        if (block.hasAttribute('rendered')) {
+            buildSidebar();
+            observer.disconnect();
+        }
+    });
+    observer.observe(block, { attributes: true, attributeFilter: ['rendered'] });
+    document.getElementById('sidebar-toggle').addEventListener('click', () => {
+        document.getElementById('sidebar').classList.toggle('collapsed');
+    });
+});
+</script>
