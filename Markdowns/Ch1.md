@@ -1,4 +1,4 @@
-# Objetivos
+## Objetivos
 
     Conceptos de algoritmo, software, programación, lenguaje de programación, construcción y ejecución
 
@@ -10,14 +10,20 @@
 
     Concepto de instrucción y sus tipos: declaraciones, asignaciones, control (de flujo), entrada y salida.
 
-# Definiciones
+## Definiciones
 
 ### Algoritmo
 
     Serie de instrucciones finita y ordenada que define una forma de arreglar un problema o realiza una tarea
 
+    Una receta de cocina, pasos para hacer figuras origami son algoritmos
+
 ### Software
 
     Serie de instrucciones, datos y código que le dirigen a una computadora
+
+    Zoom, Discord y Fortnite son software
+
+### 
 
     
