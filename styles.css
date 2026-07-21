@@ -19,7 +19,8 @@ html {
     padding-bottom: 50px;
     padding-top: 15px;
     flex: 1;
-    min-width: 0; 
+    min-width: 0;
+    font-size: 20px;
 }
 
 body {
@@ -301,6 +302,20 @@ h1 {
     word-wrap: break-word;
     word-break: break-word;
     box-sizing: border-box;
+}
+
+.markdown p{
+    color: #333
+}
+
+.markdown img {
+    background-color: #c6c6c6;
+    padding: 4px;
+    border-radius: 4px;
+    max-width: 100%;
+    height: auto;
+    display: block;  
+    margin: 1rem auto;   
 }
 
 .markdown pre,
