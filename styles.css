@@ -8,8 +8,15 @@ html {
     color: rgb(255, 255, 255)
 }
 
+.page-layout {
+    background-color: #f7c1a8;
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
 .main-content {
-    background-color: #c6c6c6;
+    background-color: #ffffff;
     min-height: 100vh;
     margin: 50px auto 40px auto; 
     width: 600px; 
@@ -24,7 +31,6 @@ html {
 }
 
 body {
-    background-color: #f1f1f1;
     margin: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     padding: 0;
@@ -151,14 +157,11 @@ h1 {
     padding-left: 10px;
 }
 
-.page-layout {
-    display: flex;
-    align-items: flex-start;
-    gap: 2rem;
-}
+
 
 .sidebar {
     position: sticky;
+    background: #ffffff;
     top: 1rem;
     width: 220px;
     flex-shrink: 0;
@@ -294,7 +297,7 @@ h1 {
 }
 
 .markdown {
-    background-color: #c6c6c6;
+    background-color: #ffffff;
     max-width: 100%;
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -307,7 +310,6 @@ h1 {
 }
 
 .markdown img {
-    background-color: #c6c6c6;
     padding: 4px;
     border-radius: 4px;
     max-width: 100%;
@@ -322,7 +324,13 @@ h1 {
     word-wrap: break-word;
     overflow-x: clip;
     max-width: 100%;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.markdown pre.language- {
+    font-family: "Fira Code", "Consolas", "Monaco", "Courier New", monospace;
+    background-color: #000;
+    color: #ffffff;
 }
 
 .markdown h2 { color: #333; }
-.markdown pre { background: #c6c6c6; }
