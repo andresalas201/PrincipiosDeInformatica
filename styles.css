@@ -320,7 +320,7 @@ h1 {
 .markdown code {
     white-space: pre-wrap;
     word-wrap: break-word;
-    overflow-x: auto;
+    overflow-x: clip;
     max-width: 100%;
 }
 
