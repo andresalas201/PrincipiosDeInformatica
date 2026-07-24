@@ -102,15 +102,15 @@
         });
     }
     document.querySelectorAll('md-block').forEach(block => {
-    const observer = new MutationObserver(() => {
-        if (block.hasAttribute('rendered')) {
-            buildSidebar();
-            observer.disconnect();
-        }
+        const observer = new MutationObserver(() => {
+            if (block.hasAttribute('rendered')) {
+                buildSidebar();
+                observer.disconnect();
+            }
+        });
+        observer.observe(block, { attributes: true, attributeFilter: ['rendered'] });
+        document.getElementById('sidebar-toggle').addEventListener('click', () => {
+            document.getElementById('sidebar').classList.toggle('collapsed');
+        });
     });
-    observer.observe(block, { attributes: true, attributeFilter: ['rendered'] });
-    document.getElementById('sidebar-toggle').addEventListener('click', () => {
-        document.getElementById('sidebar').classList.toggle('collapsed');
-    });
-});
 </script>

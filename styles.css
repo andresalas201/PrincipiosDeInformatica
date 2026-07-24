@@ -13,7 +13,7 @@ html {
     min-height: 100vh;
     margin: 50px auto 40px auto; 
     width: 600px; 
-    text-align: center;
+    text-align: justify;
     padding-left: 50px;
     padding-right: 50px;
     padding-bottom: 50px;
@@ -52,11 +52,7 @@ ul {
 }
 
 li { 
-    display: table-cell;
-    font-weight: bold; 
-    width: 1%;
     margin-bottom: 5px;
-    list-style-type: none;
 }
 
 p {
@@ -190,6 +186,7 @@ h1 {
     word-wrap: break-word;
     background-color: #c6c6c6;
     color: #ffffff;
+    display: block;
 }
 
 .sidebar a:hover {
@@ -197,7 +194,6 @@ h1 {
 }
 
 .sidebar a.level-h2 { 
-    margin-left: 3rem; 
     font-size: 0.95em; 
 }
 
@@ -241,18 +237,20 @@ h1 {
 }
 
 .sidebar-children {
-    padding-left: 1.25rem;
+    
     margin-top: 0.25rem;
 }
 
 .sidebar-children li {
     margin-bottom: 0.35rem;
+    padding-left: 3rem;
 }
 
 .sidebar-children a {
     text-decoration: none;
     color: #555;
     font-size: 0.9em;
+    display: block;
 }
 
 .sidebar a:hover {
