@@ -80,13 +80,37 @@ Este gráfico describe el proceso en el que se da la construcción y ejecución 
 
 ## Ciclo de desarrollo de software
 
+La creación del software no es simplemente sentarse y escribir código hasta que funcione, es necesario sentarse y planear concretamente lo que vamos a hacer antes de empezar a implementarlo.
+
 ### Análisis
+
+Es el primer paso, se basa en analizar exactamente que debe hacer el software, sus limitaciones y requerimientos.
+
+1. Entender **que necesita el usuario** de parte del software. Es necesario delimitar correctamente las necesidades del usuario, si el usuario quiere una calculadora no es necesario que agreguemos la opción de tomar fotos y subirlas a internet.
+2. Teniendo en mente las necesidades del usuario, se procede a pensar en los **objetivos** del software. Específicamente, que funciones debe tener nuestro programa para que las necesidades de nuestro usuario sean satisfechas. Volviendo a la calculadora, es necesario que esta sume, reste, divida y multiplique, por lo que nuestro objetivo es que estas funciones esten correctamente implementadas en el código. 
 
 ### Diseño
 
+En este paso pensamos directamente en como queremos escribir el código.
+
+1. Que estructuras vamos a usar, que clases, en que lenguaje, etc. Pensando en la calculadora, queremos que las operaciones seas un objeto además del objeto Calculadora o que la Calculadora guarde operaciones de otra manera.
+2. Que algoritmos vamos a usar para el prgorama. Como vamos a programar el menú que decide el tipo de operación, como vamos a leer los numeros que escribe el usuario, etc.
+
+Este paso a veces puede parecer innecesario, pero el realizarlo correctamente simplifica enormemente el proceso de escribir el código en si.
+
 ### Implementación
 
+En este paso se da la creación del código
+
+1. Se toma el diseño y lo convertimos en código real
+
 ### Prueba
+
+Se revisa que el código funcione correctamente y que cumpla con los objetivos iniciales.
+
+1. Se buscan errores (bugs) en el código. Pueden ser cosas simples como instrucciones mal escritas o cosas más serias como algoritmos enteros que no hacen lo que deberían.
+2. Asegurarse de que el código cumple con todos los objetivos iniciales. En el ejemplo de la calculadora, nos aseguramos que el usuario pueda realizar todas las operaciones realizadas y que sus resultados sean correctos.
+3. En caso de encontrarse bugs o que hayan objetivos sin cumplir, volvemos a la etapa de implementación, arreglando y agregando funciones, tras lo cuál repetimos la etapa de prueba.
 
 ## Resolución de problemas
 
@@ -100,6 +124,8 @@ Este gráfico describe el proceso en el que se da la construcción y ejecución 
 
 ### Validación
 
+
+
 ## Entorno de Programación
 
 ### Editor de texto
@@ -111,16 +137,17 @@ Este gráfico describe el proceso en el que se da la construcción y ejecución 
 ### Entorno de Desarrollo Integrado (IDE)
 
 
+
 ## Instrucciones
 
 <Definicion>
 
 Los tipos de instrucciones son:
 
-## Declaración
+### Declaración
 
-## Asignación
+### Asignación
 
-## Control
+### Control
 
-## Entrada y Salida
+### Entrada y Salida
