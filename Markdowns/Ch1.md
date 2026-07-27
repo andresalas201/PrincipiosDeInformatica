@@ -67,7 +67,7 @@ Python es un lenguaje de programación de **alto nivel** **orientado a objetos**
 
     En los lenguajes compilados como C y C++, el código es revisado completamente y se es traducido en su completitud a instrucciones que la computadora puede correr directamente
 
-    En los lenguajes interpretados como Python y JavaScript, el código se ejecuta directamente, traduciendo en tiempo real a instrucciones para la máquina
+    En los lenguajes interpretados como Python, el código se ejecuta directamente, traduciendo en tiempo real a instrucciones para la máquina
 
     El proceso de compilación puede ser largo, por lo que empezar a correr un programa compilado es más lento que uno interpretado. Igualmente, el proceso de convertir las el código a instrucciones en tiempo real es más lento a largo plazo y puede causar problemas si ocurre un error muy adelante en el código que podría haber sido detectado en un lenguaje compilado.
 
