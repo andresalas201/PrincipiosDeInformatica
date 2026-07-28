@@ -57,7 +57,9 @@ Python es un lenguaje de programación de **alto nivel** **orientado a objetos**
 
     Los objetos son entidades de software que contienen datos y comportamientos. La definición es un poco técnica, por lo que es útil pensar en ejemplos:
 
-    Un objeto Empleado contiene: Nombre, Cédula, Salario y Puesto (datos), también tiene una funcion que permite cambiar el valor de Salario y Puesto (comportamientos)
+    Un objeto Empleado contiene: Nombre, Cédula, Salario y Puesto (datos), también tiene una funcion que permite cambiar el valor de Salario y Puesto y debe poder Despedir y Contratar al empleado (comportamientos).
+
+![Gráfico del Objeto Empleado](Graphs/ClaseEmpleado.svg)
 
     Un objeto Calculador debe tener la capacidad de realizar sumas, restas, divisiones, multiplicaciónes y otras operaciones (comportamientos) y deben guardar operaciones anteriores, la operación actual, resultados anteriores, etc. (datos). Incluso podríamos pensar en las operaciones como objetos que contienen operandos, tipo de operación, resultado, etc.
 
@@ -94,7 +96,7 @@ Es el primer paso, se basa en analizar exactamente que debe hacer el software, s
 En este paso pensamos directamente en como queremos escribir el código.
 
 1. Que estructuras vamos a usar, que clases, en que lenguaje, etc. Pensando en la calculadora, queremos que las operaciones seas un objeto además del objeto Calculadora o que la Calculadora guarde operaciones de otra manera.
-2. Que algoritmos vamos a usar para el prgorama. Como vamos a programar el menú que decide el tipo de operación, como vamos a leer los numeros que escribe el usuario, etc.
+2. Que algoritmos vamos a usar para el programa. Como vamos a programar el menú que decide el tipo de operación, como vamos a leer los numeros que escribe el usuario, etc.
 
 Este paso a veces puede parecer innecesario, pero el realizarlo correctamente simplifica enormemente el proceso de escribir el código en si.
 
@@ -191,7 +193,7 @@ La creación y uso del código que hacemos debe darse a traves de software cread
 
 Es un programa que nos permite crear, modificar y guardar documentos de texto. El código en general es guardado en archivos con extensiones como .c, .java o .py, pero estos son en realidad archivos de texto normales que programas como el bloc de notas pueden manipular.
 
-### Interprete o compilador
+### Intérprete o compilador
 
 Es el programa que convierte el archivo de texto con código en un programa ejecutable por la máquina o en el caso del interprete que directamente convierte el texto en instrucciones a ejecutar.
 
