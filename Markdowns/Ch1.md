@@ -1,4 +1,4 @@
-# Fundamentos de la programación
+# Capítulo 1: Fundamentos de la programación
 
 ## Objetivos
 
@@ -215,10 +215,10 @@ Los tipos de instrucciones son:
 
 ### Declaración
 
-Declaran una variable. Su función es simplemente decir que existe una variable con un número específico. En el caso de Python estas son muy simples, esto debido a que las variables en Python no tienen que declararse con un tipo (los tipos de variable serán explicado más adelante). Una declaración en python se ve de la siguiente manera:
+Declaran una variable. Su función es simplemente decir que existe una variable con un número específico. En el caso de Python estas son muy simples, esto debido a que las variables en Python no tienen que declararse con un tipo (los tipos de variable serán explicado más adelante), pero si es necesario darle un valor. Una declaración en python se ve de la siguiente manera:
 
 ```
-numero1
+numero1 = 1
 ``` 
 
 ### Asignación
