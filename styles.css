@@ -1,15 +1,14 @@
 html {
-    background-color: hsl(214.3, 19.6%, 21%);
+    background-color: #1A936F;
 }
 .main-title {
-    background-color: hsl(214.3, 19.6%, 21%);
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     text-align: center;
     color: rgb(255, 255, 255)
 }
 
 .page-layout {
-    background-color: #f7c1a8;
+    background-color: #88D498;
     display: flex;
     align-items: flex-start;
     gap: 2rem;
@@ -36,7 +35,7 @@ body {
     padding: 0;
 }
 a {
-    background-color: hsl(214.3, 19.6%, 21%);
+    background-color: #1A936F;
     color: rgb(255, 255, 255);
     text-decoration: none;
     padding: 2px 4px;
@@ -161,7 +160,7 @@ h1 {
 
 .sidebar {
     position: sticky;
-    background: #ffffff;
+    background: #88D498;
     top: 1rem;
     width: 220px;
     flex-shrink: 0;
@@ -172,6 +171,8 @@ h1 {
     display: block;
     transition: width 0.2s ease, padding 0.2s ease, opacity 0.15s ease;
     overflow: hidden;
+    padding-top: 10px;
+    top: 4rem
 }
 
 .sidebar ul {
@@ -187,7 +188,7 @@ h1 {
 .sidebar a {
     text-decoration: none;
     word-wrap: break-word;
-    background-color: #c6c6c6;
+    background-color: #7aa595;
     color: #ffffff;
     display: block;
 }
@@ -197,7 +198,9 @@ h1 {
 }
 
 .sidebar a.level-h2 { 
-    font-size: 0.95em; 
+    font-size: 0.95em;
+    background-color: #1A936F;
+    color: #ffffff;
 }
 
 .sidebar-section {
@@ -236,7 +239,8 @@ h1 {
 
 .sidebar-section summary a {
     text-decoration: none;
-    color: #222;
+    color: #ffffff;
+    background-color: #1A936F;
 }
 
 .sidebar-children {
@@ -329,7 +333,7 @@ h1 {
 
 .markdown pre.language- {
     font-family: "Fira Code", "Consolas", "Monaco", "Courier New", monospace;
-    background-color: #000;
+    background-color: #114B5F;
     color: #ffffff;
 }
 
@@ -351,4 +355,9 @@ h1 {
 .markdown th {
     background-color: #b0b0b0;
     font-weight: bold;
+}
+
+a:-webkit-any-link {
+    color: #1A936F;
+    background-color: #ffffff;
 }
