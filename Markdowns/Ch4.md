@@ -47,6 +47,8 @@ Errores en muchos de estos casos pueden llevar a perdidas enormes de dinero o in
 
 Una prueba de caja negra consiste en hacer revisiones de un código basandose en una serie de entradas con respuestas correctas conocidas. Por ejemplo, probamos una calculadora enviandole la entrada "1 + 1", a lo cuál esta debe responder "2". Este tipo de pruebas buscan hacer revisiones de código sin la necesidad de ver o conocer directamente el código, simplemente se basan en lo que el código debería de hacer.
 
+![Diagrama de caja negra](Graphs/CajaNegra1.svg)
+
 ### Uso
 
 Las combinaciones entrada-salida con las que se hacen las pruebas son llamadas **casos**. En general, mientras más complicado sea el código más casos deberían probarse, pero en general se buscan probar 3 casos:
@@ -54,3 +56,5 @@ Las combinaciones entrada-salida con las que se hacen las pruebas son llamadas *
 1. **Caso normal:** Un caso completamente normal para el software probado, en el caso de la calculadora podemos usar cualquier operación como el caso "1 + 1" - "2" mencionado anteriormente.
 2. **Caso de borde (edge case):** Un caso poco común que suele generar algún problema si no pensamos directamente en él. En el caso de la calculadora, podemos utilizar un caso como "1 + 2 / 2" - "1", este podría causar problemas si no manejamos correctamente el orden de operaciones.
 3. **Caso de error:** Un caso que no debería servir o que causa un error (que debe ser manejado), este tipo de caso permite revisar si nuestro código está preparado para recibir datos incorrectos y puede manejarlos sin causar problemas serios. En el caso de la calculadora, podemos agregar un caso como "2 / 0" - "error", esto debido a que la calculadora debería ser capaz de detectar la división entre 0 sin problemas.
+
+![Diagrama de caja negra 2](Graphs/CajaNegra2.svg)
