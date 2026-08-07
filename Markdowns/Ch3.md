@@ -92,6 +92,8 @@ Operadores que revisan si los operandos son iguales
 | is      | Retorna True si op1 y op2 son iguales     | res = n1 is n2     |
 | is not  | Retorna True si op1 **NO** es igual a op2 | res = n1 is not n2 |
 
+**Nota:** En este momento estos operadores son redundantes, esto es porque principalmente se usan con objetos, no con variables normales
+
 ## Evaluación de operaciones
 
 Existen ciertas reglas dentro del lenguaje para decidir el orden en el que se realizan las operaciones
