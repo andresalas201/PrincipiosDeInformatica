@@ -88,8 +88,8 @@ La creación del software no es simplemente sentarse y escribir código hasta qu
 
 Es el primer paso, se basa en analizar exactamente que debe hacer el software, sus limitaciones y requerimientos.
 
-1. Entender **que necesita el usuario** de parte del software. Es necesario delimitar correctamente las necesidades del usuario, si el usuario quiere una calculadora no es necesario que agreguemos la opción de tomar fotos y subirlas a internet.
-2. Teniendo en mente las necesidades del usuario, se procede a pensar en los **objetivos** del software. Específicamente, que funciones debe tener nuestro programa para que las necesidades de nuestro usuario sean satisfechas. Volviendo a la calculadora, es necesario que esta sume, reste, divida y multiplique, por lo que nuestro objetivo es que estas funciones esten correctamente implementadas en el código. 
+1. Entender **que necesita el usuario** de parte del software. Es necesario delimitar correctamente las necesidades del usuario, si el usuario quiere una calculadora no es necesario que agreguemos la opción de tomar fotos y subirlas a internet. Trabajando la calculadora, es necesario que esta sume, reste, divida y multiplique.
+2. Teniendo en mente las necesidades del usuario, se procede a pensar en los **objetivos** del software. Específicamente, que funciones debe tener nuestro programa para que las necesidades de nuestro usuario sean satisfechas. Con esto en mente, nuestro objetivo es que las funciones de operaciones básicas esten correctamente implementadas en el código. En este sentido, deberíamos de crear una función para cada una de las operaciones básicas, es decir, una función sumar, una función restar, una función dividir y una función multiplicar. Además, nos interesa que el usuario interactúe con la calculadora, por lo que es necesario crear alguna forma de que el usuario pueda ingresar la operacion básica y operandos que desea.
 
 ### Diseño
 
@@ -153,17 +153,17 @@ Volviendo a la calculadora, estos son ejemplos de especificación:
 #### Pseudocódigo
 
 ```
-A = input()
-B = input()
-tipo = input()
-if tipo == "+"
-    resultado = A + B
-elif tipo == "-"
-    resultado = A - B
-elif tipo == "*"
-    resultado = A * B
-elif tipo == "/"
-    resultado = A / B
+operandoA = input()
+operandoB = input()
+operacion = input()
+if operacion == "+"
+    resultado = operandoA + operandoB
+elif operacion == "-"
+    resultado = operandoA - operandoB
+elif operacion == "*"
+    resultado = operandoA * operandoB
+elif operacion == "/"
+    resultado = operandoA / operandoB
 return resultado
 ``` 
 
