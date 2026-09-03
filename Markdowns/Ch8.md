@@ -70,7 +70,7 @@ numeros.insert(1, 4.2) # El método funciona con posición, dato
 print(numeros) # Este print imprime [1, 4.2, 2, 3]
 ```
 
-**remove():** Elimina un dato, debe recibir uno igual para encontrar el que va a ser eliminado. Solamente borra el primero encontrado. Se usa de la siguiente forma:    
+**.remove():** Elimina un dato, debe recibir uno igual para encontrar el que va a ser eliminado. Solamente borra el primero encontrado. Se usa de la siguiente forma:    
 
 
 ```
@@ -80,7 +80,7 @@ numeros.remove(1)
 print(numeros) # Este print imprime [2, 3, 1]
 ```
 
-**pop():** Elimina un dato, recibe una posición específica para eliminar. Si no se agrega un número, se elimina el último dato. Funciona de la siguiente manera:
+**.pop():** Elimina un dato, recibe una posición específica para eliminar. Si no se agrega un número, se elimina el último dato. Funciona de la siguiente manera:
 
 ```
 numeros = [1, 2, 3]
@@ -89,7 +89,7 @@ numeros.pop(0)
 print(numeros) # Este print imprime [2, 3]
 ```
 
-**sort():** Ordena la lista, si se deja vacía la ordena de menor a mayor, si se escribe reverse=True se ordena de mayor a menor. Un ejemplo de su uso es:
+**.sort():** Ordena la lista, si se deja vacía la ordena de menor a mayor, si se escribe reverse=True se ordena de mayor a menor. Un ejemplo de su uso es:
 
 ```
 numeros = [5, 2, 3, 4]
