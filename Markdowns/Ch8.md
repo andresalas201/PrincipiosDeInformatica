@@ -150,7 +150,7 @@ numeros = (1, 2, 3, 1)
 print(numeros.count(1)) # Este print imprime 2
 ```
 
-**.index():** Busca un dato y retorna la posición en la que está. Funciona de esta manera:
+**.index():** Busca un dato y retorna la posición en la que está. Si no existe, genera un error. Funciona de esta manera:
 
 ```
 numeros = (1, 2, "H", 2.1)
