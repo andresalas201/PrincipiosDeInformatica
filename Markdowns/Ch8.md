@@ -290,6 +290,16 @@ datos.clear()
 print(datos2) # Este print imprime {"n1" : 1, "n2" : 2}
 ```
 
+**Nota:** El hecho de que usar el operador **=** y usar .copy() genera un resultado diferente es la razón por la que existe el operador **is** que vimos en un capítulo interior.
+
+```
+numeros = {"n1": 1, "n3" : 2, 5: 3}
+num2 = numeros
+num3 = numeros.copy()
+print(numeros is num2) # Imprime True
+print(num3 is numeros) # Imprime False
+```
+
 ### Uso de for
 
 Los fors en un diccionario funcionan de una manera diferente. En primer lugar, el for-range que hemos visto hasta el momento no funciona con esta estructura. El for-in puede ser usado para los diccionarios, pero hay que tomar en cuenta que no nos retorna los datos directamente: **for-in, al usarse en un diccionario, nos retorna las llaves del diccionario**. La forma de utilizar el for-in es la siguiente:
