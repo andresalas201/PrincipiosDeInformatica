@@ -25,6 +25,25 @@ Algunos ejemplos de documentación en página web de las bibliotecas que usaremo
 - [Pandas](https://pandas.pydata.org/docs/user_guide/index.html)
 - [MatPlotLib](https://matplotlib.org/stable/users/index)
 
+Otras formas de revisar las capacidades de una estructura es la función **dir()**. dir() funciona de la siguiente manera:
+
+```
+nums = [1, 2, 3]
+print(dir(nums))
+```
+
+En este ejemplo, dir() imprime todas las subrutinas que existen dentro de las listas, desde subrutinas que hemos visto como append() y pop() hasta funciones menos comunes como __ delattr __(). 
+
+**Nota:** dir() por si mismo imprime todas las variables y subrutinas disponibles.
+
+Para saber el funcionamiento exacto de una subrutina, se utiliza **help()**. help() imprime una explicación del funcionamiento de la subrutina, se utiliza de la siguiente manera:
+
+```
+print(help(print))
+```
+
+En este ejemplo, se imprime en consola el funcionamiento de la subrutina print y sus argumentos. En general esta explicación también puede ser encontrada en la documentación de la subrutina.
+
 ## Uso
 
 Para usar una biblioteca, es necesario instalarla primero, esto se logra mediante un programa llamado **pip**, el cuál fue su instalado junto con Python. Para instalar la biblioteca, simplemente se abre una consola y se utiliza el comando pip install [nombre]. Incluso se pueden instalar múltiples bibliotecasen un solo comando. Por ejemplo, para instalar las bibliotecas mencionadas anteriormente, simplemente se usa el siguiente comando:
