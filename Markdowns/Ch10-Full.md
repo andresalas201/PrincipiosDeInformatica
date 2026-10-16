@@ -1,0 +1,1250 @@
+# Capitulo 10: Computación Numerica
+
+## Objetivos
+
+    Arreglos de una y más dimensiones con bibliotecas de computación numérica: creación, indexación, recorrido y slicing
+
+    Operaciones vectorizadas: suma, resta, promedio, mínimo, máximo, multiplicación de matrices; operaciones sobre filas y columnas, trasposición, diagonal, e inversa.
+
+    Broadcasting: operaciones con arreglos de diferentes dimensiones
+
+## NumPy
+
+Es una biblioteca usada para aplicaciones científicas y matemáticas. En el caso de este curso, contienen una estructura de datos llamada array, esta nos permite realizar operaciones con matrices de una forma simple.
+
+### Arreglos
+
+Los arreglos (arrays) de NumPy son estructuras mutables que nos permiten realizar operaciones matriciales de forma más simple que las estructuras nativas de python. Se declaran de la siguiente manera:
+
+```
+import numpy as np
+
+arr1 = np.array([1.0, 3.0])
+```
+
+Otra forma de declararlas es crear una estructura normal y convertirla a array:
+
+```
+import numpy as np
+
+arr1 = [1.0, 5.0]
+arr1 = np.array(arr1)
+```
+
+**NOTA:** Los array **NO** permiten diferentes tipos de datos, todos los datos deben ser del mismo tipo. Esto significa que en muchos casos NumPy va a convertir datos al crear el array.
+
+### Propiedades
+
+Atributos: shape, ndim, size, dtype, data.
+• Mutabilidad y tipos de datos especiales (nan, inf).
+
+**.shape:** nos dice las dimensiones del array. Este comando retorna una tupla con el tamaño de cada dimensión del array. Por ejemplo:
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0, 3.0, 4.0],
+        [10.0, 30.0, 50.0, 51.0]]
+arr1 = np.array(arr1)
+print(arr1.shape) # Imprime (2, 4)
+```
+
+**.size:** Dice la cantidad de datos en el array.
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0, 3.0, 4.0],
+        [10.0, 30.0, 50.0, 51.0]]
+arr1 = np.array(arr1)
+print(arr1.size) # Imprime 8
+```
+
+**.dtype:** Dice el tipo de dato quen contiene el array
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0, 3.0, 4.0],
+        [10.0, 30.0, 50.0, 51.0]]
+arr1 = np.array(arr1)
+print(arr1.dtype) # Imprime float64
+```
+
+**.data:** Retorna un buffer que apunta al principio del array, es decir, una dirección de memoria.
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0, 3.0, 4.0],
+        [10.0, 30.0, 50.0, 51.0]]
+arr1 = np.array(arr1)
+print(arr1.data) # Imprime una dirección de memoria
+```
+
+### Otras formas de creación
+
+Otras formas de crear arrays son:
+
+**zeros():** Crea un array hecho completamente de ceros. Recibe como argumento una tupla que decide su tamaño. Un ejemplo de su uso es:
+
+```
+import numpy as np
+
+arr1 = np.zeros((3,2))
+print(arr1)
+# Imprime
+# [[0. 0.]
+#  [0. 0.]
+#  [0. 0.]]
+```
+
+**ones():** Igual que zeros, pero crea un array lleno de 1. Se usa de la siguiente manera:
+
+```
+import numpy as np
+
+arr1 = np.ones((3,2))
+print(arr1)
+# Imprime
+# [[1. 1.]
+#  [1. 1.]
+#  [1. 1.]]
+```
+
+**arange():** Nos permite crear un array que contiene un rango de datos. Hay diferentes formas de generarlo:
+
+1. np.arange(NumFinal):
+
+```
+import numpy as np
+
+arr1 = np.arange(5)
+print(arr1)
+# Imprime [0 1 2 3 4]
+```
+
+2. np.arange(NumInicial, NumFinal):
+
+```
+import numpy as np
+
+arr1 = np.arange(1, 5)
+print(arr1)
+# Imprime [1 2 3 4]
+```
+
+3. np.arange(NumInicial, NumFinal, Pasos):
+
+```
+import numpy as np
+
+arr1 = np.arange(1, 5, 2)
+print(arr1)
+# Imprime [1 3]
+```
+
+**linspace():** Crea un array con números en un intervalo que están espaciados de forma uniforme. Recibe como parametro el numero inicial y final. Generalmente genera 50 datos, pero un parametro opcional es la cantidad de números a generar.
+
+```
+import numpy as np
+
+arr1 = np.linspace(0, 100)
+print(arr1)
+# Imprime
+#[  0.           2.04081633   4.08163265   6.12244898   8.16326531
+#  10.20408163  12.24489796  14.28571429  16.32653061  18.36734694
+#  20.40816327  22.44897959  24.48979592  26.53061224  28.57142857
+#  30.6122449   32.65306122  34.69387755  36.73469388  38.7755102
+#  40.81632653  42.85714286  44.89795918  46.93877551  48.97959184
+#  51.02040816  53.06122449  55.10204082  57.14285714  59.18367347
+#  61.2244898   63.26530612  65.30612245  67.34693878  69.3877551
+#  71.42857143  73.46938776  75.51020408  77.55102041  79.59183673
+#  81.63265306  83.67346939  85.71428571  87.75510204  89.79591837
+#  91.83673469  93.87755102  95.91836735  97.95918367 100.        ]
+```
+
+Para pedir una cantidad diferente de datos, se agrega otro parametro.
+
+```
+import numpy as np
+
+arr1 = np.linspace(0, 100, 5)
+print(arr1)
+# Imprime [  0.  25.  50.  75. 100.]
+```
+
+**random():** Genera un array con datos aleatorios. Recibe como parametros una serie de números que describen las dimensiones del array.
+
+```
+import numpy as np
+
+arr1 = np.random(3, 2)
+print(arr1)
+# Imprime un array 3x2 con números aleatorios
+```
+
+**copy():** Retorna una copia del array.
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0, 3.0, 4.0],
+        [10.0, 30.0, 50.0, 51.0]]
+arr1 = np.array(arr1)
+arr2 = np.copy(arr2)
+print(arr1)
+# Imprime
+# [[ 1.  2.  3.  4.]
+#  [10. 30. 50. 51.]]
+
+print(arr2)
+# Imprime
+# [[ 1.  2.  3.  4.]
+#  [10. 30. 50. 51.]]
+```
+
+### Tipos de datos especiales
+
+Existen tipos de datos especiales que se pueden presentar en un array, estos son:
+
+1. **nan:** Usado para representar la falta de un dato o un error que causa que el dato no sea usable, nan significa "Not A Number". Para revisar si algo es un nan no se puede revisar con el operados ==, se debe usar la subrutina np.isnan(dato), la cual retorna un booleano.
+
+```
+import numpy as np
+
+dato = np.nan
+print(np.isnan(dato)) # Imprime True
+```
+
+2. **inf:** Usado para representar un número infinito. Como dato interesante, se genera si se da una división entre 0. Puede ser positivo o negativo. Existen 3 formas de revisar si un dato es infinito.
+
+```
+import numpy as np
+
+dato = np.inf
+print(np.isinf(dato)) # Imprime True si dato es infinito positivo o negativo
+print(np.isposinf(dato)) # Imprime True si dato es infinito positivo 
+print(np.isneginf(dato)) # Imprime True si dato es infinito negativo
+```
+
+En general estos datos nos causan problemas, por lo tanto es deseable eliminarnos y conseguir datos normales que si podemos utilizar de forma normal. NumPy contiene una forma de convertir estos datos, el metodo **np.nan_to_num**.
+
+```
+import numpy as np
+
+datos = np.array([np.inf, np.nan, -np.inf])
+datos = np.nan_to_num(datos)
+print(datos) # Imprime [ 1.79769313e+308  0.00000000e+000 -1.79769313e+308]1
+```
+
+**NOTA:** Como pueden notar, np.nan_to_num convierte inf a un numero exageramente grande, mientras que nan se vuelve 0.
+
+### Indexación
+
+El acceso a los arrays funciona de la misma manera que las estructuras nativas de Python, simplemente se utiliza el operador **[ ]**. Todos los comandos disponibles en el operador **[ ]** sirven, incluyendo **[:]** y accesar con números negativos. Por ejemplo:
+
+```
+import numpy as np
+
+arr1 = [1.0, 5.0, 3.0]
+arr1 = np.array(arr1)
+print(arr[1]) # Imprime 5.0
+print(arr[0:1]) # Imprime [1.0, 5.0]
+print(arr[-1]) # Imprime 3.0
+
+```
+
+**Nota:** Al proceso de utilizar el comando [:] se le llama **slicing**, esto debido a que se corta en pedazos el dato a utilizar.
+
+Cuando tenemos un array con muchas dimensiones, podemos accesar de 2 maneras:
+
+Utilizando múltiples [ ] (Sirve en estructuras nativas de Python):
+```
+import numpy as np
+
+arr1 = [[1.0, 5.0, 3.0], [10, 90, 80]]
+arr1 = np.array(arr1)
+print(arr1[0][1]) # Imprime 5.0
+```
+
+Utilizando múltiples numeros dentro de [ ] (Solo funciona en NumPy):
+```
+import numpy as np
+
+arr1 = [[1.0, 5.0, 3.0], [10, 90, 80]]
+arr1 = np.array(arr1) 
+print(arr1[0, 1]) # Imprime 5.0
+```
+
+Otra forma de realizar slicing es el operador **[::]**. Este operador funciona de la forma [inicio:final:paso]
+
+- Inicio denota el punto en el que empieza el corte
+
+- Final denota el punto en el que se para de cortar
+
+- Paso denota cada cuantos pasos de guarda un dato. Por ejemplo:
+
+```
+import numpy as np
+
+arr1 = [1.0, 2.0, 3.0, 4.0]
+arr1 = np.array(arr1) 
+print(arr1[0:3:2]) # Imprime [1.0, 3.0], debido a que solo toma datos cada 2 pasos, saltandose el 2.0
+```
+
+Otro uso interesante, es tomar todos los datos de un array que cumplen con una condición, esto se logra utilizando el operador **[ ]**. Por ejemplo:
+
+```
+import numpy as np
+
+arr1 = [1.0, 2.0, 3.0, 4.0]
+arr1 = np.array(arr1) 
+print(arr1[arr1 % 2 == 0]) # Imprime [2.0, 4.0], debido a que solo toma datos pares
+```
+
+También puede usarse una estructura llamada **mask** o máscara, que es un array de booleanos que denota cuales datos del array cumplen con una condición. Un ejemplo de su uso es:
+
+```
+import numpy as np
+
+arr1 = [[ 1.0,  2.0,  3.0],
+        [10.0, 30.0, 45.0]]
+arr1 = np.array(arr1)
+
+mask = arr1 % 2 == 0
+print(mask)
+# Imprime
+# [[False  True False]
+#  [ True  True False]]
+
+res = arr1[mask]
+print(res) # Imprime [ 2. 10. 30.]
+```
+
+Otra forma de indexar es np.nonzero(). **.nonzero()** retorna una serie de tuplas que nos dicen las posiciones de los datos que no son 0.
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0],
+        [0.0, 4.0]]
+arr1 = np.array(arr1)
+res = np.nonzero(arr1)
+print(res)
+# Imprime
+# (array([0, 0, 1]), array([0, 1, 1]))
+# Existen 3 valores que no son 0 y sus posiciones son: (0, 0), (0, 1) y (1, 1)
+```
+
+### Manipulación de datos
+
+Existen formas de manipular los datos de un array
+
+**.append():** Permite agregar nuevos datos a un array. Recibe como parametro el array a modificar, los datos que agregar y de forma opcional el axis en el que se van a agregar. No modifica el array que recibe, retorna un array nuevo con la modificación. Si no se agrega nada a axis, se genera un array de una sola dimensión como resultado. Su uso varia un poco dependiendo del valor usado en axis.
+
+1. Si no se usa axis, se genera un array de una sola dimension
+
+```
+import numpy as np
+
+arr1 = [[ 1.0,  2.0,  3.0],
+        [10.0, 30.0, 45.0]]
+arr1 = np.array(arr1)
+arr1 = np.append(arr1, [[1, 6, 1]])
+print(arr1) # Imprime [ 1.  2.  3. 10. 30. 45.  1.  6.  1.]
+```
+
+2. Axis = 0 intenta agregar una nueva fila
+
+```
+import numpy as np
+
+arr1 = [[ 1.0,  2.0,  3.0],
+        [10.0, 30.0, 45.0]]
+arr1 = np.array(arr1)
+arr1 = np.append(arr1, [[1, 6, 1]], axis=0)
+print(arr1) 
+# Imprime
+# [[ 1.  2.  3.]
+#  [10. 30. 45.]
+#  [ 1.  6.  1.]]
+```
+
+3. Axis = 1 intenta agregar una nueva columna
+
+```
+import numpy as np
+
+arr1 = [[ 1.0,  2.0,  3.0],
+        [10.0, 30.0, 45.0]]
+arr1 = np.array(arr1)
+arr1 = np.append(arr1, [[1], [6]], axis=1)
+print(arr1)
+# Imprime
+# [[ 1.  2.  3.  1.]
+#  [10. 30. 45.  6.]]
+```
+
+**.insert():** Inserta datos en un lugar específico. Recibe como parametros el array a editar, las posiciones de los datos, los datos a agregar y de forma opcional el axis en el que se agregarán. Al igual que append, funciona diferente según el axis usado.
+
+1. Si no se usa axis, se retorna un array 1d.
+
+```
+import numpy as np
+
+arr1 = [[ 1.0,  2.0,  3.0],
+        [10.0, 30.0, 45.0]]
+arr1 = np.array(arr1)
+arr1 = np.insert(arr1, [1, 5], [10, 11])
+print(arr1) # Imprime [ 1. 10.  2.  3. 10. 30. 11. 45.]
+```
+
+2. Si axis = 0, se agregan como filas
+
+```
+import numpy as np
+
+arr1 = [[ 1.0,  2.0,  3.0],
+        [10.0, 30.0, 45.0]]
+arr1 = np.array(arr1)
+arr1 = np.insert(arr1, [1, 0], [[10, 11, 12], [99, 88, 0]], axis=0)
+print(arr1)
+# Imprime
+# [[99. 88.  0.]
+#  [ 1.  2.  3.]
+#  [10. 11. 12.]
+#  [10. 30. 45.]]
+```
+
+3. Si axis = 1, se agregan como columnas
+
+```
+import numpy as np
+
+arr1 = [[ 1.0,  2.0,  3.0],
+        [10.0, 30.0, 45.0]]
+arr1 = np.array(arr1)
+arr1 = np.insert(arr1, [1, 0], [[10, 99], [11, 88]], axis=1)
+print(arr1)
+# Imprime
+# [[99.  1. 10.  2.  3.]
+#  [88. 10. 11. 30. 45.]]
+```
+
+**.delete():** Elimina filas o columnas de un array. Recibe como parametros el array a editar, las posiciones a borrar y de forma opcional un axis en el cual borrar datos. Dependiendo del axis la función borra de forma diferente.
+
+1. Si no hay axis, el array se vuelve 1d y se borran los indices de forma lineal.
+
+```
+import numpy as np
+
+arr1 = [[ 1.0,  2.0,  3.0],
+        [10.0, 30.0, 45.0]]
+arr1 = np.array(arr1)
+arr1 = np.delete(arr1, [1])
+print(arr1) # Imprime [ 1.  3. 10. 30. 45.]
+```
+
+2. Si axis = 0 se borran filas
+
+```
+import numpy as np
+
+arr1 = [[ 1.0,  2.0,  3.0],
+        [10.0, 30.0, 45.0]]
+arr1 = np.array(arr1)
+arr1 = np.delete(arr1, [1], axis=0)
+print(arr1)
+# Imprime
+# [[1. 2. 3.]]
+```
+
+3. Si axis = 1 se borran columnas
+
+```
+import numpy as np
+
+arr1 = [[ 1.0,  2.0,  3.0],
+        [10.0, 30.0, 45.0]]
+arr1 = np.array(arr1)
+arr1 = np.delete(arr1, [1], axis=1)
+print(arr1)
+# Imprime
+# [[ 1.  3.]
+#  [10. 45.]]
+```
+
+## Operaciones
+
+Los arreglos de NumPy permiten realizar operaciones vectorizadas, es decir, usando una sola instrucción en Python, realizar una operación sobre todos los datos del array. Por ejemplo, si tenemos una lista de 2 dimensiones y queremos multiplicarla por 2, se hace el siguiente código:
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0, 3.0, 4.0],
+        [10.0, 30.0, 50.0, 51.0]]
+arr1 = np.array(arr1)
+arr1 = arr1 * 2
+print(arr1)
+
+# Imprime:
+#[[  2.   4.   6.   8.]
+# [ 20.  60. 100. 102.]]
+```
+
+Esto funciona con todas las otras operaciones que hemos visto durante el curso.
+
+Existen otras operaciones que pueden realizarse sobre arrays:
+
+**.sum():** Suma todos los datos del array. Se usa de la diferente manera:
+
+```
+import numpy as np
+
+arr1 = [1.0, 2.0, 3.0, 4.0]
+arr1 = np.array(arr1)
+print(np.sum(arr1)) # Imprime 10.0
+```
+
+Otra forma de usarlo es:
+
+```
+import numpy as np
+
+arr1 = [1.0, 2.0, 3.0, 4.0]
+arr1 = np.array(arr1)
+print(arr1.sum()) # Imprime 10.0
+```
+
+**.mean():** Calcula el promedio del array, se usa de la siguiente manera:
+
+```
+import numpy as np
+
+arr1 = [1.0, 2.0, 3.0, 4.0]
+arr1 = np.array(arr1)
+print(np.mean(arr1)) # Imprime 2.5
+```
+
+Otra forma de usarlo es:
+
+```
+import numpy as np
+
+arr1 = [1.0, 2.0, 3.0, 4.0]
+arr1 = np.array(arr1)
+print(arr1.mean()) # Imprime 2.5
+```
+
+**.median():** Retorna la mediana del array:
+
+```
+import numpy as np
+
+arr1 = [1.0, 2.0, 3.0, 4.0]
+arr1 = np.array(arr1)
+print(np.median(arr1)) # Imprime 2.5
+```
+
+**min():** Retorna el valor minimo del array. Por ejemplo:
+
+```
+import numpy as np
+
+arr1 = [1.0, 2.0, 3.0, 4.0]
+arr1 = np.array(arr1)
+print(np.min(arr1)) # Imprime 1.0
+```
+
+También se puede usar de la siguiente manera:
+
+```
+import numpy as np
+
+arr1 = [1.0, 2.0, 3.0, 4.0]
+arr1 = np.array(arr1)
+print(arr1.min()) # Imprime 1.0
+```
+
+**.max():** Retorna el valor más grande del array. Un ejemplo de su uso es:
+
+```
+import numpy as np
+
+arr1 = [1.0, 2.0, 3.0, 4.0]
+arr1 = np.array(arr1)
+print(np.max(arr1)) # Imprime 4.0
+```
+
+También se puede usar de la siguiente manera:
+
+```
+import numpy as np
+
+arr1 = [1.0, 2.0, 3.0, 4.0]
+arr1 = np.array(arr1)
+print(arr1.max()) # Imprime 4.0
+```
+
+**.prod():** Multiplica todos los datos del array.
+
+```
+import numpy as np
+
+arr1 = [1.0, 2.0, 3.0, 4.0]
+arr1 = np.array(arr1)
+print(np.prod(arr1)) # Imprime 24.0
+```
+
+**.std():** Retorna la desviación estandar del array.
+
+```
+import numpy as np
+
+arr1 = [1.0, 2.0, 3.0, 4.0]
+arr1 = np.array(arr1)
+print(np.std(arr1)) # Imprime 1.118033988749895
+```
+
+**NOTA:** Para las subrutinas max, min, sum, mean, median, prod y std se puede recibir un axis como parametro opcional. Axis = 0 realiza las operaciones en filas, axis = 1 las realiza en columnas
+
+**.transpose():** Retorna la transposición de un array. Se usa de la siguiente forma:
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0],
+        [3.0, 4.0]]
+arr1 = np.array(arr1)
+print(np.transpose(arr1))
+# Imprime
+# [[1. 3.]
+#  [2. 4.]]
+```
+
+Tambien se usa de la siguiente manera:
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0],
+        [3.0, 4.0]]
+arr1 = np.array(arr1)
+print(arr1.transpose())
+# Imprime
+# [[1. 3.]
+#  [2. 4.]]
+```
+
+**.diagonal():** Retorna un array con los datos de la diagonal del array. Funciona de la siguiente manera:
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0],
+        [3.0, 4.0]]
+arr1 = np.array(arr1)
+print(np.diagonal(arr1)) # Imprime [1.0, 4.0]
+```
+
+La otra forma de usarla es:
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0],
+        [3.0, 4.0]]
+arr1 = np.array(arr1)
+print(arr1.diagonal()) # Imprime [1.0, 4.0]
+```
+
+**.linalg.det():** Retorna el determinante de un array. Para poder usar la función el array debe ser cuadrado, usar un array no cuadrado genera un error.
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0],
+        [3.0, 4.0]]
+arr1 = np.array(arr1)
+print(np.linalg.det(arr1)) # Imprime -2.0000000000000004 (Ejemplo perfecto de los errores de float)
+```
+
+Para revisar si una matriz es cuadrada, se puede utilizar el siguiente código:
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0],
+        [3.0, 4.0]]
+arr1 = np.array(arr1)
+numDimensiones = arr1.ndim
+arrDimensiones = arr1.shape
+
+if numDimensiones == 2 and arrDimensiones[0] == arrDimensiones[1]: # Si las 2 dimensiones que nos da .shape son iguales, la matriz es cuadrada
+        print("Es cuadrada")
+```
+
+**.linalg.inv():** Retorna la inversa de un array. Para poder usarla el array debe ser cuadrado y tener determinante diferente de 0, de lo contrario, se genera un error.
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0],
+        [3.0, 4.0]]
+arr1 = np.array(arr1)
+print(np.linalg.inv(arr1))
+# Imprime
+# [[-2.   1. ]
+#  [ 1.5 -0.5]]
+```
+
+Funciones matemáticas: exp, sqrt, sin, cos, log, dot.
+
+**.exp():** Recibe un array y retorna un array con el exponencial de cada dato (para cada dato N calcula e ** N)
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0],
+        [3.0, 4.0]]
+arr1 = np.array(arr1)
+print(np.exp(arr1))
+# Imprime
+# [[ 2.71828183  7.3890561 ]
+#  [20.08553692 54.59815003]]
+```
+
+**.sqrt():** Recibe un array y retorna un array con la raiz cuadrada de cada dato.
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0],
+        [3.0, 4.0]]
+arr1 = np.array(arr1)
+print(np.sqrt(arr1))
+# Imprime
+# [[1.         1.41421356]
+#  [1.73205081 2.        ]]
+```
+
+**.sin():** Recibe un array y retorna un array con el seno de cada dato.
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0],
+        [3.0, 4.0]]
+arr1 = np.array(arr1)
+print(np.sin(arr1))
+# Imprime
+# [[ 0.84147098  0.90929743]
+#  [ 0.14112001 -0.7568025 ]]
+```
+
+**.cos():** Recibe un array y retorna un array con el coseno de cada dato.
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0],
+        [3.0, 4.0]]
+arr1 = np.array(arr1)
+print(np.cos(arr1))
+# Imprime
+# [[ 0.54030231 -0.41614684]
+#  [-0.9899925  -0.65364362]]
+```
+
+**.log():** Recibe un array y retorna un array con el logaritmo natural de cada dato.
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0],
+        [3.0, 4.0]]
+arr1 = np.array(arr1)
+print(np.log(arr1))
+# Imprime
+# [[0.         0.69314718]
+#  [1.09861229 1.38629436]]
+```
+
+**.dot():** Recibe 2 arrays y devuelve su producto punto. Si los arrays tienen dimensiones incompatibles se produce un error
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0],
+        [3.0, 4.0]]
+arr1 = np.array(arr1)
+
+arr2 = [[5.0, 6.0],
+        [7.0, 8.0]]
+arr2 = np.array(arr2)
+
+print(np.dot(arr1, arr2))
+# Imprime
+# [[19. 22.]
+#  [43. 50.]]
+```
+
+### Operar sobre filas y columnas
+
+Muchas de las operaciones vistas permiten generar resultados por cada columna o por cada fila del array. Esto se hace con el argumento **axis**. Axis = 0 revisa columnas, axis = 1 revisa filas. Un ejemplo de como utilizarlo es:
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0],
+        [3.0, 4.0],
+        [5.0, 6.0]]
+arr1 = np.array(arr1)
+print(np.mean(arr1, axis=0)) # Imprime [3.0, 4.0]
+print(np.mean(arr1, axis=1)) # Imprime [1.5, 3.5, 5.5]
+```
+
+Este mismo método funciona sobre otras operaciones como .sum(), .mean(), .min() y .max()
+
+Si quisieramos acceder a filas o columnas específicas podemos utilizar el operador **[ ]**
+
+Como se mencinó anteriormente, el operador [ ] acepta múltiples números al usarse en un array de numpy. Esto significa que podemos tomar intervalos de un índice mientras tomamos uno específico en el otro. Por ejemplo:
+
+```
+import numpy as np
+
+arr1 = [[1.0, 2.0],
+        [3.0, 4.0]]
+arr1 = np.array(arr1)
+print(arr1)
+# Imprime
+#[[1.0, 2.0],
+# [3.0, 4.0]]
+
+arr1[:,0] *= 2 # : hace que tomememos columnas enteras, 0 hace que solo sea la primera
+print(arr1)
+# Imprime
+#[[2.0, 2.0],
+# [6.0, 4.0]]
+```
+
+Esto permite muchos tipos diferentes de manipulación de secciones de datos.
+
+
+### Comparaciones
+
+Al realizar comparaciones entre arrays, se genera un array de booleanos que denota el resultado de cada espacio del array. Esto funciona con todos los operadores de comparación que se vieron en el pasado.
+
+```
+import numpy as np
+
+arr1 = [[ 1.0,  2.0,  3.0],
+        [10.0, 30.0, 45.0]]
+arr1 = np.array(arr1)
+arr2 = [[ 7.0,  2.0,  55.0],
+        [10.0, 30.1, 45.0]]
+arr2 = np.array(arr2)
+res = arr1 == arr2
+print(res)
+# Imprime
+# [[False  True False]
+#  [ True False  True]]
+```
+
+### Ordenamiento
+
+**.sort():** Retorna una versión ordenada (menor a mayor) del array. Recibe como parametro el array a ordenar y de forma opcional el axis. Si no recibe un axis crea una versión 1d del array.
+
+1. Sin axis (axis = -1 por default) se ordena por la última dimension (en 2d se ordena por filas)
+
+```
+import numpy as np
+
+arr1 = [[10.0, 222.0], 
+        [333.0, 40.0]]
+arr1 = np.array(arr1)
+print(np.sort(arr1))
+# Imprime
+# [[ 10. 222.]
+#  [ 40. 333.]]
+```
+
+2. Si axis = None ordena creando un nuevo array 1d
+
+```
+import numpy as np
+
+arr1 = [[10.0, 222.0], 
+        [333.0, 40.0]]
+arr1 = np.array(arr1)
+print(np.sort(arr1, axis=None)) # Imprime [  3.  10.  40. 222.]
+```
+
+3. Si axis = 0 se ordena empezando por filas
+
+```
+import numpy as np
+
+arr1 = [[10.0, 222.0], 
+        [333.0, 40.0]]
+arr1 = np.array(arr1)
+print(np.sort(arr1, axis=0))
+# Imprime
+# [[ 10.  40.]
+#  [333. 222.]]
+```
+
+4. Si axis = 1 se ordena empezando por columnas
+
+```
+import numpy as np
+
+arr1 = [[10.0, 222.0], 
+        [333.0, 40.0]]
+arr1 = np.array(arr1)
+print(np.sort(arr1, axis=1))
+# Imprime
+# [[ 10. 222.]
+#  [ 40. 333.]]
+```
+
+También existe el metodo array.sort() que funciona de la misma forma excepto que edita directamente el array:
+
+```
+import numpy as np
+
+arr1 = [[10.0, 222.0], 
+        [333.0, 40.0]]
+arr1 = np.array(arr1)
+arr1.sort(axis=1)
+print(arr1)
+# Imprime
+# [[ 10. 222.]
+#  [ 40. 333.]]
+```
+
+**.flip()** Crea una versión del array con los datos en el orden opuesto. Mantiene las dimensiones. Puede recibir una serie de axis como parametro que hace que solo afecte esos axis (ej. si recibe un 0, mueve filas enteras).
+
+1. Si no tiene axis se mueven datos
+
+```
+import numpy as np
+
+arr1 = [[10.0, 20.0], 
+        [30.0, 40.0]]
+arr1 = np.array(arr1)
+arr1 = np.flip(arr1)
+print(arr1)
+# Imprime
+# [[40. 30.]
+#  [20. 10.]]
+```
+
+2. Si axis = 0 se mueven filas
+
+```
+import numpy as np
+
+arr1 = [[10.0, 20.0], 
+        [30.0, 40.0]]
+arr1 = np.array(arr1)
+arr1 = np.flip(arr1, axis=0)
+print(arr1)
+# Imprime
+# [[30. 40.]
+# [10. 20.]]
+```
+
+3. Si axis = 1 se mueven columnas
+
+```
+import numpy as np
+
+arr1 = [[10.0, 20.0], 
+        [30.0, 40.0]]
+arr1 = np.array(arr1)
+arr1 = np.flip(arr1, axis=1)
+print(arr1)
+# Imprime
+# [[20. 10.]
+#  [40. 30.]]
+```
+
+### Concatenacion
+
+**.concatenate():** Concatena diferentes arrays. Recibe como parametro una lista de arrays (los cuales deben ser compatibles en cuanto a dimensiones) y de forma opcional recibe un axis sobre el cuál concatenan.
+
+1. Si axis = 0 o axis no se usa, se crean nuevas filas
+
+```
+import numpy as np
+
+arr1 = [[10.0, 222.0], 
+        [333.0, 40.0]]
+arr1 = np.array(arr1)
+
+arr2 = [[20.0, 25.0], 
+        [33.0, 45.0]]
+arr2 = np.array(arr2)
+arr1 = np.concatenate([arr1, arr2], axis=0)
+print(arr1)
+# Imprime
+# [[ 10. 222.]
+#  [333.  40.]
+#  [ 20.  25.]
+#  [ 33.  45.]]
+```
+
+2. Si axis = 1 se crean nuevas columnas
+
+```
+import numpy as np
+
+arr1 = [[10.0, 222.0], 
+        [333.0, 40.0]]
+arr1 = np.array(arr1)
+
+arr2 = [[20.0, 25.0], 
+        [33.0, 45.0]]
+arr2 = np.array(arr2)
+arr1 = np.concatenate([arr1, arr2], axis=1)
+print(arr1)
+# Imprime
+# [[ 10. 222.  20.  25.]
+#  [333.  40.  33.  45.]]
+```
+
+**.vstack():** Es equivalente a concatenate con axis = 0
+
+```
+import numpy as np
+
+arr1 = [[10.0, 222.0], 
+        [333.0, 40.0]]
+arr1 = np.array(arr1)
+
+arr2 = [[20.0, 25.0], 
+        [33.0, 45.0]]
+arr2 = np.array(arr2)
+arr1 = np.vstack([arr1, arr2])
+print(arr1)
+# Imprime
+# [[ 10. 222.]
+#  [333.  40.]
+#  [ 20.  25.]
+#  [ 33.  45.]]
+```
+
+**.hstack():** Es equivalente a concatenate con axis = 1
+
+```
+import numpy as np
+
+arr1 = [[10.0, 222.0], 
+        [333.0, 40.0]]
+arr1 = np.array(arr1)
+
+arr2 = [[20.0, 25.0], 
+        [33.0, 45.0]]
+arr2 = np.array(arr2)
+arr1 = np.hstack([arr1, arr2])
+print(arr1)
+# Imprime
+# [[ 10. 222.  20.  25.]
+#  [333.  40.  33.  45.]]
+```
+
+## Broadcasting
+
+Broadcasting es un proceso mediante el cuál un array es transformado para poder realizar operaciones con arrays más grandes. En general, para poder realizar broadcasting, al menos una de las dimensiones del array es igual a 1. En general, el broadcasting se basa en extender un array pequeño para que sea igual a un array más grande. 
+
+
+Esto se resume en casos:
+
+**1 Fila:**
+
+```
+import numpy as np
+
+arr1 = [[  1.0,   2.0,   3.0],
+        [ 10.0,  20.0,  30.0],
+        [100.0, 200.0, 300.0]]
+arr1 = np.array(arr1)
+
+arr2 = [1.0, 2.0, 3.0]
+arr2 = np.array(arr2)
+
+arr1 += arr2
+print(arr1) 
+# Imprime
+# [[  2.   4.   6.]
+#  [ 11.  22.  33.]
+#  [101. 202. 303.]]
+```
+
+Esto también se puede ver en el siguiente diagrama:
+
+![Diagrama de broadcasting con filas = 1](Graphs/BroadFilas.svg)
+
+
+**1 Columna:**
+
+```
+import numpy as np
+
+arr1 = [[  1.0,   2.0,   3.0],
+        [ 10.0,  20.0,  30.0],
+        [100.0, 200.0, 300.0]]
+arr1 = np.array(arr1)
+
+arr2 = [[1.0],
+        [2.0], 
+        [3.0]]
+arr2 = np.array(arr2)
+
+arr1 += arr2
+print(arr1) 
+# Imprime
+# [[  2.   3.   4.]
+#  [ 12.  22.  32.]
+#  [103. 203. 303.]]
+```
+
+Esto también se puede ver en el siguiente diagrama:
+
+![Diagrama de broadcasting con columnas = 1](Graphs/BroadColumnas.svg)
+
+
+**1 Columna y 1 Fila:**
+
+```
+import numpy as np
+
+arr1 = [[  1.0,   2.0,   3.0],
+        [ 10.0,  20.0,  30.0],
+        [100.0, 200.0, 300.0]]
+arr1 = np.array(arr1)
+
+arr2 = [1.0]
+arr2 = np.array(arr2)
+
+arr1 += arr2
+print(arr1) 
+# Imprime
+# [[  2.   3.   4.]
+#  [ 11.  21.  31.]
+#  [101. 201. 301.]]
+```
+
+Esto también se puede ver en el siguiente diagrama:
+
+![Diagrama de broadcasting con columnas = 1](Graphs/Broad11.svg)
+
+Incluso es posible hacer broadcasting de los 2 arrays a la vez. Por ejemplo:
+
+```
+import numpy as np
+
+arr1 = [1.0, 2.0, 3.0]
+arr1 = np.array(arr1)
+
+arr2 = [[1.0],
+        [2.0], 
+        [3.0]]
+arr2 = np.array(arr2)
+
+arr1 = arr1 + arr2 # Para este tipo de broadcasting, solo se puede usar el operador =
+print(arr1) 
+# Imprime
+# [[2. 3. 4.]
+#  [3. 4. 5.]
+#  [4. 5. 6.]]
+```
+
+## Persistencia
+
+En muchos casos van a querer guardar los datos por fuera de código y no dejarlos solamente en la ejecución de nuestro código.
+
+**.save():** Crea un archivo que contiene una representación binaria de los datos de un array. Recibe el nombre del archivo que va a ser creado y el array que será guardado
+
+```
+import numpy as np
+
+arr1 = [1.0, 2.0, 3.0]
+arr1 = np.array(arr1)
+
+np.save("datos", arr1)
+```
+
+**.load():** Lee uno de los archivos creados por save y crea un array. Recibe el nombre del archivo que se va a leer.
+
+```
+import numpy as np
+
+arr1 = np.load("datos.npy") # Se agrega .npy porque save() crea archivos con esa extensión
+print(arr1) # Si es corrido junto al ejemplo anterior, imprime [1. 2. 3.]
+```
+
+## Polynomials
+
+### Polinomiales
+
+NumPy contiene una forma de crear polinomios, esta se llama np.polynomial.polynomial.Polynomial, por lo que usaremos un import diferente para simplificar. Un polinomio se crea de la siguiente manera:
+
+```
+import numpy.polynomial as pol
+
+pol1 = pol.Polynomial([1, 2, 3]) # Esto es el equivalente de 1 + 2X + 3X^2
+print(pol1) # Imprime 1.0 + 2.0 x + 3.0 x**2
+```
+
+Se pueden realizar operaciones con Polynomial, por ejemplo:
+
+```
+import numpy.polynomial as pol
+
+pol1 = pol.Polynomial([1, 2, 3]) # 1 + 2X + 3X^2
+pol2 = pol.Polynomial([2, 0, 5]) # 2 + 5X^2
+
+print(pol1 + pol2) # Imprime 3.0 + 2.0 x + 8.0 x**2
+print(pol1 - pol2) # Imprime -1.0 + 2.0 x - 2.0 x**2
+print(pol1 * pol2) # Imprime 2.0 + 4.0 x + 11.0 x**2 + 10.0 x**3 + 15.0 x**4
+```
+
+Por último, se puede evaluar la función, calcular sus raíces (valores de X que generen 0) y calcular su derivada.
+
+```
+import numpy.polynomial as pol
+
+pol1 = pol.Polynomial([1, 2, 3]) # 1 + 2X + 3X^2
+
+print(pol1(5)) # Imprime 17.0
+print(pol1.roots()) # Imprime [-0.33333333-0.47140452j -0.33333333+0.47140452j]
+print(pol1.deriv()) # Imprime 2.0 + 6.0 x
+```
+
+### Sistemas de ecuaciones
+
+NumPy puede utilizar sus arrays como matrices y resolver el sistema de ecuaciones que generan. Esto se logra con la función **np.linalg.solve()**. Esta función recibe 2 arrays: Una con los coeficientes y otra con los resultados. Un ejemplo de su uso es:
+
+Tenemos el sistema de ecuaciones:
+
+X + 3Y = 0
+5X + Y = 3
+
+Esto se representa de la siguiente manera:
+
+```
+import numpy as np
+
+coef = np.array([[1, 3], [5, 1]])
+dep = np.array([0, 3])
+
+print(np.linalg.solve(coef, dep))
+# Imprime [ 0.64285714 -0.21428571]
+```
+
+Con el print, se puede concluir que X = 0.64285714 y Y = -0.21428571
+
+**Nota:** Si las dimensiones de los arrays no crean un sistema de ecuaciones resolvible, se genera un error
