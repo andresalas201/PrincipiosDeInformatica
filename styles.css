@@ -160,19 +160,20 @@ h1 {
 
 .sidebar {
     position: sticky;
-    background: #88D498;
-    top: 1rem;
+    top: 4rem;
     width: 220px;
     flex-shrink: 0;
-    max-height: calc(100vh - 2rem);
+    max-height: calc(100vh - 5rem);
     overflow-y: auto;
-    padding: 1rem;
+    overflow-x: hidden;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+    box-sizing: border-box;
+    background: #88D498;
+    padding: 10px 1rem 1rem 1rem;
     border-right: 1px solid #ddd;
     display: block;
     transition: width 0.2s ease, padding 0.2s ease, opacity 0.15s ease;
-    overflow: hidden;
-    padding-top: 10px;
-    top: 4rem
 }
 
 .sidebar ul {
@@ -298,6 +299,7 @@ h1 {
     opacity: 0;
     border-right: none;
     white-space: nowrap;
+    overflow: hidden;
 }
 
 .markdown {
